@@ -1,5 +1,10 @@
 import APIListRequestModel from '../model/api/api-list-request.model';
-import { APIDetailRequestInterface } from '../model/api/interface/model.interface';
+import APIDetailRequestModel from '../model/api/api-detail-request.model';
+
+import {
+    MovieListInterface,
+    MovieDetailInterface
+} from '../model/movie/interface/model.interface';
 
 /**
  * Movie Repository
@@ -7,8 +12,10 @@ import { APIDetailRequestInterface } from '../model/api/interface/model.interfac
  * @since 2020.09.17
  */
 export interface MovieRepositoryInterface {
-    getListMovie(param: APIListRequestModel): Promise<{}>;
+    getListMovie(
+        param: APIListRequestModel
+    ): Promise<MovieListInterface | undefined>;
     getDetailMovie(
-        param: APIDetailRequestInterface
-    ): Promise<{}>;
+        param: APIDetailRequestModel
+    ): Promise<MovieDetailInterface | undefined>;
 }

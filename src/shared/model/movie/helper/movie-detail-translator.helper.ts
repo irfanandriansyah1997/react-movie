@@ -4,6 +4,7 @@ import MovieFigureTranslatorHelper from './movie-figure-translator.helper';
 import ScoreTranslatorHelper from '../../general/helper/score-translator.helper';
 import RatingTranslatorHelper from '../../general/helper/rating-translator.helper';
 import { RootObjectDetailAPIResponse } from '../../../generated/api/detail-api.interface';
+import { RootObjectAPIErrorResponse } from '../../../generated/api/error-api.interface';
 
 /**
  * Movie Detail Translator
@@ -16,58 +17,74 @@ class MovieDetailTranslatorHelper {
      * @param {Object} response - Response API
      */
     public static translateRESTToMovieDetail({
-        Title,
-        Year,
-        imdbID,
-        Type,
-        Plot,
-        Rated,
-        Genre,
-        Poster,
-        Runtime,
-        Released,
-        Production,
-        Metascore,
-        imdbVotes,
-        imdbRating,
-        Ratings,
-        Director,
-        Actors,
-        Writer
-    }: RootObjectDetailAPIResponse): MovieDetailModel {
-        return new MovieDetailModel()
-            .setTitle(Title)
-            .setYear(Year)
-            .setId(imdbID)
-            .setType(Type as MovieType)
-            .setPlot(Plot)
-            .setRated(Rated)
-            .setGenre(Genre)
-            .setPoster(Poster)
-            .setRuntime(Runtime)
-            .setReleased(Released)
-            .setProduction(Production)
-            .setScore(
-                ScoreTranslatorHelper.translateRESTToScore({
-                    Metascore,
-                    imdbRating,
-                    imdbVotes
-                })
-            )
-            .setRatings(
-                RatingTranslatorHelper.translateRESTToRating(
-                    { Ratings }
+        Response,
+        ...res
+    }:
+        | RootObjectAPIErrorResponse
+        | RootObjectDetailAPIResponse): MovieDetailModel {
+        if (Response === 'True') {
+            const {
+                Title,
+                Year,
+                imdbID,
+                Type,
+                Plot,
+                Rated,
+                Genre,
+                Poster,
+                Runtime,
+                Released,
+                Production,
+                Metascore,
+                imdbVotes,
+                imdbRating,
+                Ratings,
+                Director,
+                Actors,
+                Writer
+            } = res as Omit<
+                RootObjectDetailAPIResponse,
+                'Response'
+            >;
+
+            return new MovieDetailModel()
+                .setTitle(Title)
+                .setYear(Year)
+                .setId(imdbID)
+                .setType(Type as MovieType)
+                .setPlot(Plot)
+                .setRated(Rated)
+                .setGenre(Genre)
+                .setPoster(Poster)
+                .setRuntime(Runtime)
+                .setReleased(Released)
+                .setProduction(Production)
+                .setScore(
+                    ScoreTranslatorHelper.translateRESTToScore(
+                        {
+                            Metascore,
+                            imdbRating,
+                            imdbVotes
+                        }
+                    )
                 )
-            )
-            .setFigure(
-                MovieFigureTranslatorHelper.translateRESTToRatingItem(
-                    {
-                        Actors,
-                        Director,
-                        Writer
-                    }
+                .setRatings(
+                    RatingTranslatorHelper.translateRESTToRating(
+                        { Ratings }
+                    )
                 )
-            );
+                .setFigure(
+                    MovieFigureTranslatorHelper.translateRESTToRatingItem(
+                        {
+                            Actors,
+                            Director,
+                            Writer
+                        }
+                    )
+                );
+        }
+
+        throw new Error('API Error');
     }
 }
 
