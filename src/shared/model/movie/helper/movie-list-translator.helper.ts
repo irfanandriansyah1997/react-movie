@@ -2,6 +2,15 @@ import MovieListModel from '../movie-list.model';
 import MovieListItemTranslatorHelper from './movie-list-item-translator.helper';
 import { RootObjectListAPIResponse } from '../../../generated/api/list-api.interface';
 import PaginationTranslatorHelper from '../../general/helper/pagination-translator.helper';
+import { RootObjectAPIErrorResponse } from '../../../generated/api/error-api.interface';
+import { PER_PAGE } from '../../general/constant/pagination.const';
+
+const {
+    translateRESTToMovieListItem
+} = MovieListItemTranslatorHelper;
+const {
+    translateRESTToPagination
+} = PaginationTranslatorHelper;
 
 /**
  * Movie List Translator
@@ -11,30 +20,32 @@ import PaginationTranslatorHelper from '../../general/helper/pagination-translat
 class MovieListTranslatorHelper {
     /**
      * Translate Rest To Movie List
-     * @param {number} page - page number
-     * @param {number} perPage - per page option
      * @param {Object} response - Response API
      */
-    public static translateRESTToMovieList(
-        page: number,
-        perPage: number,
-        { Search, totalResults }: RootObjectListAPIResponse
-    ): MovieListModel {
-        return new MovieListModel()
-            .setItem(
-                Search.map(
-                    MovieListItemTranslatorHelper.translateRESTToMovieListItem
+    public static translateRESTToMovieList({
+        Response,
+        ...res
+    }:
+        | RootObjectAPIErrorResponse
+        | RootObjectListAPIResponse): MovieListModel {
+        if (Response === 'True') {
+            const { Search, totalResults } = res as Omit<
+                RootObjectListAPIResponse,
+                'Response'
+            >;
+
+            return new MovieListModel()
+                .setItem(
+                    Search.map(translateRESTToMovieListItem)
                 )
-            )
-            .setPagination(
-                PaginationTranslatorHelper.translateRESTToPagination(
-                    page,
-                    perPage,
-                    {
+                .setPagination(
+                    translateRESTToPagination(1, PER_PAGE, {
                         totalResults
-                    }
-                )
-            );
+                    })
+                );
+        }
+
+        throw new Error('API Error');
     }
 }
 
