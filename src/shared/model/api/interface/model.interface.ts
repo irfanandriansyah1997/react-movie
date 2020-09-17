@@ -6,6 +6,7 @@
  */
 export interface APIListRequestInterface {
     s: string;
+    page: number;
 }
 
 /**

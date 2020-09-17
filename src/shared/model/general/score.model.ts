@@ -65,7 +65,7 @@ class ScoreModel extends ModelAbstract<ScoreInterface> {
             };
         }
 
-        throw Error('Set ID Not Invoked');
+        throw Error('Data Not Completed');
     }
 }
 

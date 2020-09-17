@@ -1,7 +1,8 @@
 import { MovieType } from '../../../interface/movie-type.interface';
 import {
     ScoreInterface,
-    RatingInterface
+    RatingInterface,
+    PaginationInterface
 } from '../../general/interface/model.interface';
 
 /**
@@ -10,6 +11,16 @@ import {
  * @since 2020.09.17
  */
 export interface MovieListInterface {
+    item: MovieListItemInterface[];
+    pagination: PaginationInterface;
+}
+
+/**
+ * Movie List Item Interface
+ * @author Irfan Andriansyah <irfan@99.co>
+ * @since 2020.09.17
+ */
+export interface MovieListItemInterface {
     title: string;
     year: string;
     id: string;
@@ -22,7 +33,7 @@ export interface MovieListInterface {
  * @author Irfan Andriansyah <irfan@99.co>
  * @since 2020.09.17
  */
-export type MovieDetailInterface = MovieListInterface & {
+export type MovieDetailInterface = MovieListItemInterface & {
     plot: string;
     rated: string;
     genre: string;

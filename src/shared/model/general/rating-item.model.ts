@@ -53,7 +53,7 @@ class RatingItemModel extends ModelAbstract<
             };
         }
 
-        throw Error('Set ID Not Invoked');
+        throw Error('Data Not Completed');
     }
 }
 

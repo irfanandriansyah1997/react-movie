@@ -12,9 +12,11 @@ class APIListRequestModel extends ModelAbstract<
 > {
     private query: string = '';
 
+    private page: number = 1;
+
     /**
      * Setter ID
-     * @param {string} ID - id movies
+     * @param {string} query - query search movies
      * @return {this}
      */
     public setQuerySearch(query: string): this {
@@ -23,15 +25,26 @@ class APIListRequestModel extends ModelAbstract<
     }
 
     /**
+     * Setter Page
+     * @param {string} page - page number
+     * @return {this}
+     */
+    public setPage(page: number): this {
+        this.page = page;
+        return this;
+    }
+
+    /**
      * Getter Model Value
      * @return {APIListRequestInterface}
      */
     public get modelValue(): APIListRequestInterface {
-        const { query: s } = this;
+        const { query: s, page } = this;
 
         if (ValidatorHelper.verifiedIsNotEmpty(s)) {
             return {
-                s
+                s,
+                page
             };
         }
 
