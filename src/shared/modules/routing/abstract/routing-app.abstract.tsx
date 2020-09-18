@@ -1,7 +1,10 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
+import { Provider } from 'react-redux';
 import React, { PureComponent, ReactNode } from 'react';
 import { Switch, Route, HashRouter } from 'react-router-dom';
+import StoreBuilder from '../../redux/builder/store.builder';
+import { StoreInterface } from '../../redux/interfaces/redux-action.interface';
 
 import { RoutingItemInterface } from '../interface/routing-item.interface';
 
@@ -74,12 +77,34 @@ abstract class RoutingAppAbstract extends PureComponent {
         );
     }
 
+    private store: StoreInterface | undefined = undefined;
+
+    constructor(props: {}) {
+        super(props);
+
+        this.store = StoreBuilder.singleton();
+    }
+
     abstract get modules(): Object[];
 
     /**
      * Render
      */
     render(): ReactNode {
+        const { store } = this;
+
+        if (store) {
+            return (
+                <Provider store={store}>
+                    <div className="ui-container">
+                        <HashRouter>
+                            {RoutingAppAbstract.generateRouting(this.modules)}
+                        </HashRouter>
+                    </div>
+                </Provider>
+            );
+        }
+
         return (
             <HashRouter>
                 {RoutingAppAbstract.generateRouting(this.modules)}

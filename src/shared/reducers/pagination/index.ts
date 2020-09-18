@@ -4,6 +4,7 @@ import { PaginationInterface } from '../../model/general/interface/model.interfa
 import { PaginationReducerInterface } from './interfaces/pagination-reducer.interface';
 import { ReducerActionParamInterface } from '../../modules/redux/interfaces/redux-action.interface';
 import {
+    SET_PAGE_KEY,
     DEFAULT_PAGINATION,
     SET_PAGINATION_KEY,
     UNSET_PAGINATION_KEY
@@ -22,6 +23,14 @@ const PaginationReducers: Reducer<
     action: ReducerActionParamInterface
 ): PaginationReducerInterface => {
     switch (action.type) {
+        case SET_PAGE_KEY:
+            return {
+                ...state,
+                pagination: {
+                    ...state.pagination,
+                    ...action.payload
+                }
+            };
         case SET_PAGINATION_KEY:
             return {
                 ...state,

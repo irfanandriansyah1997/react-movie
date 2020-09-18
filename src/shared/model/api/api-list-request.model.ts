@@ -1,5 +1,4 @@
 import ModelAbstract from '../../abstract/model.abstract';
-import ValidatorHelper from '../../helper/validator.helper';
 import { APIListRequestInterface } from './interface/model.interface';
 
 /**
@@ -41,14 +40,10 @@ class APIListRequestModel extends ModelAbstract<
     public get modelValue(): APIListRequestInterface {
         const { query: s, page } = this;
 
-        if (ValidatorHelper.verifiedIsNotEmpty(s)) {
-            return {
-                s,
-                page
-            };
-        }
-
-        throw Error('Set Query Search Not Invoked');
+        return {
+            s,
+            page
+        };
     }
 }
 

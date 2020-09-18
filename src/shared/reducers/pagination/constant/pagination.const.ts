@@ -1,6 +1,7 @@
-import { PaginationInterface } from '../../../model/general/interface/model.interface';
-import { DEFAULT_PAGINATION as DEFAULT_VALUE } from '../../../model/general/constant/pagination.const';
 import { PaginationReducerInterface } from '../interfaces/pagination-reducer.interface';
+import { DEFAULT_PAGINATION as DEFAULT_VALUE } from '../../../model/general/constant/pagination.const';
+
+export const SET_PAGE_KEY = 'SET_PAGE';
 
 export const SET_PAGINATION_KEY = 'SET_PAGINATION';
 

@@ -449,3 +449,33 @@ textarea {
     color: #000;
     padding: 0.2em 0;
 }
+
+.ui-container {
+    width: 100%;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+@media (max-width: 576px) {
+    .ui-container {
+        max-width: 100%;
+    }
+}
+
+@media (min-width: 576px) {
+    .ui-container {
+        max-width: 540px;
+    }
+}
+
+@media (min-width: 768px) {
+    .ui-container {
+        max-width: 720px;
+    }
+}
+
+@media (min-width: 992px) {
+    .ui-container {
+        max-width: 960px;
+    }
+}

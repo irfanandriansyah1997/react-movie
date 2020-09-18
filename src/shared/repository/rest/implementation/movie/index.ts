@@ -58,7 +58,19 @@ class MovieRepositoryImplementation implements Repo {
             .setFuncTranslator(
                 MovieListTranslatorHelper.translateRESTToMovieList
             )
-            .execute();
+            .execute()
+            .then((response) => {
+                if (response) {
+                    return {
+                        ...response,
+                        pagination: {
+                            ...response.pagination,
+                            page: param.modelValue.page
+                        }
+                    };
+                }
+                return response;
+            });
     }
 
     /**

@@ -1,3 +1,6 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { Store } from 'redux';
+
 /**
  * Reducer Action Param Interface
  * @author Irfan Andriansyah <irfan@99.co>
@@ -9,3 +12,14 @@ export interface ReducerActionParamInterface {
     payload: Record<string, unknown>;
     page?: string;
 }
+
+/**
+ * Generate Interface
+ * @author Irfan Andriansyah <irfan@99.co>
+ * @description
+ * @since 2020.09.18
+ */
+export type StoreInterface = Store<
+    any,
+    ReducerActionParamInterface
+>;

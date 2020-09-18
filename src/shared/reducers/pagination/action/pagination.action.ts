@@ -2,6 +2,7 @@ import { Dispatch } from 'redux';
 
 import { PaginationInterface } from '../../../model/general/interface/model.interface';
 import {
+    SET_PAGE_KEY,
     SET_PAGINATION_KEY,
     UNSET_PAGINATION_KEY
 } from '../constant/pagination.const';
@@ -17,6 +18,22 @@ export const setPaginationAction = (
     dispatch({
         type: SET_PAGINATION_KEY,
         payload: response
+    });
+};
+
+/**
+ * Pagination Action
+ * @param {PaginationInterface} pagination - pagination interface
+ * @return {void}
+ */
+export const setPageAction = (response: number) => (
+    dispatch: Dispatch
+): void => {
+    dispatch({
+        type: SET_PAGE_KEY,
+        payload: {
+            page: response
+        }
     });
 };
 
