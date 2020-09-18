@@ -12,9 +12,7 @@ const MovieListContext = createContext<
         year: ''
     },
     query: '',
-    showDialog: false,
     setQuery: () => {},
-    setShowDialog: () => {},
     setActiveMovie: () => {}
 });
 

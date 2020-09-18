@@ -45,17 +45,9 @@ const TextComponent: FunctionComponent<TextPropsInterace> = ({
 TextComponent.propTypes = {
     color: PropTypes.string,
     styling: PropTypes.oneOf<ComponentStylingTypography>([
-        'heading1',
-        'heading2',
-        'heading3',
-        'heading4',
-        'heading5',
-        'heading6',
-        'default',
-        'featured',
-        'meta',
         'caption',
-        'tiny'
+        'heading',
+        'default'
     ]) as Validator<ComponentStylingTypography>,
     fontWeight: PropTypes.oneOf<ComponentFontWeightTypography>([
         300,

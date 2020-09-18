@@ -1,0 +1,63 @@
+.card {
+    width: calc(calc(100% / 4) - 20px);
+    margin: 60px 10px 0;
+}
+
+.card:hover .image {
+    box-shadow: 0 16px 32px -2px rgba(0, 0, 0, 0.25);
+}
+
+.container {
+    display: flex;
+    min-height: 200px;
+    position: relative;
+    align-items: center;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.content {
+    width: 100%;
+    display: flex;
+    padding: 10px;
+    text-align: center;
+    flex-direction: column;
+    text-decoration: none;
+}
+
+.image {
+    height: 295px;
+    object-fit: cover;
+    margin-top: -30px;
+    border-radius: 5px;
+    width: calc(100% - 30px);
+    transition: 0.31s cubic-bezier(0.7, 0.3, 0, 1);
+}
+
+.list {
+    display: flex;
+    align-items: center;
+    margin: 10px -5px 5px;
+}
+
+.title {
+    display: flex;
+    line-height: 25px;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 64px;
+    overflow: hidden;
+}
+
+.title p {
+    overflow: hidden;
+    max-height: 50px;
+}
+
+.listItem {
+    margin: 0 5px;
+    padding: 5px 10px;
+    border-radius: 20px;
+    border: 1px dashed rgba(0, 0, 0, 0.15);
+}

@@ -42,9 +42,7 @@ const MovieListViewModel: FunctionComponent<{}> = () =>  {
         activeMovie,
         query,
         setActiveMovie,
-        setQuery,
-        setShowDialog,
-        showDialog
+        setQuery
     };
 
     /**

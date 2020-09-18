@@ -7,9 +7,7 @@ import { MovieListItemInterface } from '../../../../../shared/model/movie/interf
  */
 export interface MovieListContextInterface {
     query: string;
-    showDialog: boolean;
     activeMovie: MovieListItemInterface;
     setQuery(query: string): void;
-    setShowDialog(show: boolean): void;
     setActiveMovie(movie: MovieListItemInterface): void;
 }

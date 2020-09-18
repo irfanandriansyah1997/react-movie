@@ -29,17 +29,9 @@ interface BasePropsInterface {
  * @since 2020.09.18
  */
 export type ComponentStylingTypography =
-    | 'heading1'
-    | 'heading2'
-    | 'heading3'
-    | 'heading4'
-    | 'heading5'
-    | 'heading6'
+    | 'heading'
     | 'default'
-    | 'featured'
-    | 'meta'
-    | 'caption'
-    | 'tiny';
+    | 'caption';
 
 /**
  * Type component for font weight type

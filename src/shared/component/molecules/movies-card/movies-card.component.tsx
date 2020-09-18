@@ -1,13 +1,14 @@
 import PropTypes from 'prop-types';
 import React, { FunctionComponent } from 'react';
 
+import { Link } from 'react-router-dom';
+import StringHelper from '../../../helper/string.helper';
 import CardComponent from '../../atomic/card/card.component';
+import TextComponent from '../../atomic/text/text.component';
 import { MovieType } from '../../../interface/movie-type.interface';
 import {  MoviesCardInterface } from './interface/component.interface';
 
 import style from './style/style.module.css';
-import TextComponent from '../../atomic/text/text.component';
-import StringHelper from '../../../helper/string.helper';
 
 /**
  * Movies Card Component
@@ -27,9 +28,12 @@ const MoviesCardComponent: FunctionComponent<MoviesCardInterface> = ({
     return (
         <CardComponent
             {...res}
-            className="ui-movies-card"
+            className={StringHelper.objToString({
+                [style.card]: true,
+                'ui-movies-card': true
+            })}
         >
-            <div className={style.card}>
+            <div className={style.container}>
                 <img
                     alt={title}
                     src={poster}
@@ -40,17 +44,50 @@ const MoviesCardComponent: FunctionComponent<MoviesCardInterface> = ({
                         'ui-movies-card__image': true
                     })}
                 />
-                <div className={style.content}>
-                    <TextComponent styling="heading3">{title}</TextComponent>
+                <Link
+                    className={style.content}
+                    to={`/detail/${id}`}
+                >
+                    <div className={style.title}>
+                        <TextComponent
+                            styling="heading"
+                            fontWeight={500}
+                            color="#222b45"
+                            className={StringHelper.objToString({
+                            
+                                'ui-movies-card__title': true
+                            })}
+                        >
+                            {title}
+                        </TextComponent>
+                    </div>
                     <ul className={style.list}>
                         <li>
-                            <TextComponent styling="heading5">{type}</TextComponent>
+                            <TextComponent
+                                styling="caption"
+                                color="#697684"
+                                className={StringHelper.objToString({
+                                    [style.listItem]: true,
+                                    'ui-movies-card__list-item': true
+                                })}
+                            >
+                                {type}
+                            </TextComponent>
                         </li>
                         <li>
-                            <TextComponent styling="heading5">{year}</TextComponent>
+                            <TextComponent
+                                styling="caption"
+                                color="#697684"
+                                className={StringHelper.objToString({
+                                    [style.listItem]: true,
+                                    'ui-movies-card__list-item': true
+                                })}
+                            >
+                                {year}
+                            </TextComponent>
                         </li>
                     </ul>
-                </div>
+                </Link>
             </div>
         </CardComponent>
     );

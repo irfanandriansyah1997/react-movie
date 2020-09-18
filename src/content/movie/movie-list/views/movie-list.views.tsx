@@ -1,10 +1,14 @@
 import PropTypes from 'prop-types';
-import React, { FunctionComponent, Validator } from 'react';
+import React, { FunctionComponent, useContext, Validator } from 'react';
 
+import MovieListContext from '../context/movie-list.context';
 import { ViewsPropsInterface } from './interfaces/views.interface';
 import { MovieType } from '../../../../shared/interface/movie-type.interface';
+import { MovieListContextInterface } from '../context/interfaces/context.interface';
 import { MovieListItemInterface } from '../../../../shared/model/movie/interface/model.interface';
 import MoviesCardComponent from '../../../../shared/component/molecules/movies-card/movies-card.component';
+
+import style from './style/style.module.css';
 
 /**
  * Generate Class
@@ -15,10 +19,15 @@ import MoviesCardComponent from '../../../../shared/component/molecules/movies-c
 const MovieListViews: FunctionComponent<ViewsPropsInterface> = ({
     item: movieList
 }) => {
+    const { setActiveMovie } = useContext<MovieListContextInterface>(MovieListContext);
     return (
-        <div>
+        <div className={style.list}>
             {movieList.map((item) => (
-                <MoviesCardComponent key={item.id} {...item} />
+                <MoviesCardComponent
+                    key={item.id}
+                    {...item}
+                    onClick={(): void => setActiveMovie(item)}
+                />
             ))}
         </div>
     );
