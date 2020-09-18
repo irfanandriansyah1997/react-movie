@@ -1,7 +1,7 @@
 [![codecov](https://codecov.io/gh/irfanandriansyah1997/react-movie/branch/master/graph/badge.svg)](https://codecov.io/gh/irfanandriansyah1997/react-movie)
 [![Build Status](https://travis-ci.com/irfanandriansyah1997/react-movie.svg?branch=master)](https://travis-ci.com/irfanandriansyah1997/react-movie)
 
-## pokemon dex
+## React Movie
 
 create sample implementation React and OMDB API
 
