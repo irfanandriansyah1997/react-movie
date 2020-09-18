@@ -4,6 +4,7 @@ import { RootObjectListAPIResponse } from '../../../generated/api/list-api.inter
 import PaginationTranslatorHelper from '../../general/helper/pagination-translator.helper';
 import { RootObjectAPIErrorResponse } from '../../../generated/api/error-api.interface';
 import { PER_PAGE } from '../../general/constant/pagination.const';
+import PaginationModel from '../../general/pagination.model';
 
 const {
     translateRESTToMovieListItem
@@ -45,7 +46,9 @@ class MovieListTranslatorHelper {
                 );
         }
 
-        throw new Error('API Error');
+        return new MovieListModel()
+            .setItem([])
+            .setPagination(new PaginationModel());
     }
 }
 

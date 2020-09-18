@@ -11,8 +11,15 @@ import MovieListContext from '../context/movie-list.context';
 import { TypeValueReducers } from '../../../../shared/reducers';
 import { MovieListContextInterface } from '../context/interfaces/context.interface';
 import { MovieListItemInterface } from '../../../../shared/model/movie/interface/model.interface';
-import { setMovieListAction } from '../../../../shared/reducers/movie-list/action/movie-list.action';
-import { setPageAction, setPaginationAction } from '../../../../shared/reducers/pagination/action/pagination.action';
+import {
+    setMovieListAction,
+    unsetMovieListAction
+} from '../../../../shared/reducers/movie-list/action/movie-list.action';
+import {
+    setPageAction,
+    setPaginationAction,
+    unsetPaginationAction
+} from '../../../../shared/reducers/pagination/action/pagination.action';
 
 /**
  * Movie List View Model
@@ -31,15 +38,23 @@ const MovieListViewModel: FunctionComponent<{}> = () =>  {
         year: ''
     }));
 
-    const { totalPage, page } = useSelector(({ pagination: state }: TypeValueReducers) => {
+    const {
+        page,
+        totalPage,
+        totalResult
+    } = useSelector(({
+        pagination: state
+    }: TypeValueReducers) => {
         const {
             page: valPage,
-            totalPage: valTotal
+            totalPage: valTotal,
+            totalResult: valTotalResult
         } = state.pagination;
 
         return {
             page: valPage,
-            totalPage: valTotal
+            totalPage: valTotal,
+            totalResult: valTotalResult
         };
     });
     
@@ -62,21 +77,42 @@ const MovieListViewModel: FunctionComponent<{}> = () =>  {
      * @return {void}
      */
     const fetchAPI = (): void => {
-        MovieListHelper.fetchAPI(page, query).then((response) => {
-            if (response) {
-                const { item, pagination } = response;
-                dispatch(setMovieListAction(item));
-                dispatch(setPaginationAction(pagination));
-            }
-        });
+        try {
+            MovieListHelper.fetchAPI(page, query).then((response) => {
+                if (response && response.pagination.page === 1) {
+                    dispatch(unsetMovieListAction());
+                    dispatch(unsetPaginationAction());
+                }
+
+                if (response && response.item.length > 0) {
+                    const { item, pagination } = response;
+                    dispatch(setMovieListAction(item));
+                    dispatch(setPaginationAction(pagination));
+                }
+            });
+        } catch (e) {
+            dispatch(unsetMovieListAction());
+            dispatch(unsetPaginationAction());
+        }
+    };
+
+    /**
+     * On Change Query
+     * @returns {void}
+     */
+    const onChangeQuery = (text: string): void => {
+        dispatch(unsetMovieListAction());
+        dispatch(unsetPaginationAction());
+        setQuery(text);
+        dispatch(setPageAction(1));
     };
 
     const contextValue: MovieListContextInterface = {
         query,
-        setQuery,
         activeMovie,
         setActiveMovie,
-        onFetchAPI: isFetchAPI
+        onFetchAPI: isFetchAPI,
+        setQuery: onChangeQuery,
     };
 
     useEffect(() => {
@@ -91,6 +127,7 @@ const MovieListViewModel: FunctionComponent<{}> = () =>  {
         <MovieListContext.Provider value={contextValue}>
             <MovieListViews
                 item={movieList}
+                totalResult={totalResult}
             />
         </MovieListContext.Provider>
     );

@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import React, { FunctionComponent } from 'react';
+import React, { FunctionComponent, Validator } from 'react';
 
 import { Link } from 'react-router-dom';
 import StringHelper from '../../../helper/string.helper';
@@ -97,9 +97,15 @@ MoviesCardComponent.propTypes = {
     title: PropTypes.string.isRequired,
     year: PropTypes.string.isRequired,
     id: PropTypes.string.isRequired,
-    type: PropTypes.oneOf<MovieType>(['episode', 'movie', 'series']).isRequired,
-    poster: PropTypes.string.isRequired,
-    
+    type: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.oneOf<MovieType>(['episode', 'movie', 'series'])
+    ]).isRequired as Validator<MovieType>,
+    poster: PropTypes.string.isRequired,  
+};
+
+MoviesCardComponent.defaultProps = {
+    type: 'episode'
 };
 
 export default MoviesCardComponent;

@@ -96,11 +96,9 @@ abstract class RoutingAppAbstract extends PureComponent {
         if (store) {
             return (
                 <Provider store={store}>
-                    <div className="ui-container">
-                        <HashRouter>
-                            {RoutingAppAbstract.generateRouting(this.modules)}
-                        </HashRouter>
-                    </div>
+                    <HashRouter>
+                        {RoutingAppAbstract.generateRouting(this.modules)}
+                    </HashRouter>
                 </Provider>
             );
         }

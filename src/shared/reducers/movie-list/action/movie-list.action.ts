@@ -25,7 +25,7 @@ export const setMovieListAction = (
  * Unset Movie List Action
  * @return {void}
  */
-export const unsetPaginationAction = () => (
+export const unsetMovieListAction = () => (
     dispatch: Dispatch
 ): void => {
     dispatch({

@@ -1,3 +1,4 @@
+import { PaginationInterface } from '../../../../../shared/model/general/interface/model.interface';
 import { MovieListInterface } from '../../../../../shared/model/movie/interface/model.interface';
 
 /**
@@ -8,4 +9,5 @@ import { MovieListInterface } from '../../../../../shared/model/movie/interface/
 export type ViewsPropsInterface = Pick<
     MovieListInterface,
     'item'
->;
+> &
+    Pick<PaginationInterface, 'totalResult'>;
