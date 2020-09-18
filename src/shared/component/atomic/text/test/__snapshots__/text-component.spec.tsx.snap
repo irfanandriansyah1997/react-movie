@@ -1,0 +1,7 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Testing <TextComponent> in atomic component  Generate text snapshot 1 1`] = `"<p class=\\"text default testing-generate-class-name\\" style=\\"color: rgb(0, 0, 0); font-weight: 700; text-align: center;\\">Text Default With Black Color</p>"`;
+
+exports[`Testing <TextComponent> in atomic component  Generate text snapshot 2 1`] = `"<p class=\\"text caption testing-generate-class-name\\" style=\\"color: rgb(105, 172, 236); font-weight: 500; text-align: right;\\">Text Caption With Blue Color</p>"`;
+
+exports[`Testing <TextComponent> in atomic component  Generate text snapshot 2 2`] = `"<p class=\\"text heading testing-generate-class-name\\" style=\\"color: rgb(240, 240, 240); font-weight: 400; text-align: left;\\">Text Heading With Whitesmoke</p>"`;

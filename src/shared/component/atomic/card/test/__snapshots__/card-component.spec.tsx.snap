@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Testing <CardComponent> in atomic component  Generate card snapshot 1`] = `"<div class=\\"testing-generate-class-name card\\"><p>Hai</p><span>Selamat Data</span></div>"`;
