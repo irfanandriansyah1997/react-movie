@@ -104,7 +104,7 @@
       "react/jsx-one-expression-per-line": "off",
       "react/jsx-wrap-multilines": "off",
       "react/destructuring-assignment": "off",
-      "indent": ["error", 4],
+      "indent": ["error", 4, { "SwitchCase": 1 }],
       "no-empty": "error",
       "class-methods-use-this": ["off"],
       "no-multiple-empty-lines": "error",
@@ -116,7 +116,7 @@
             "files": ["*.ts", "*.tsx"],
             "rules": {
                 "@typescript-eslint/indent": "off",
-                "indent": ["error", 4],
+                "indent": ["error", 4, { "SwitchCase": 1 }],
                 "react/jsx-indent": ["error", 4],
                 "react/jsx-indent-props": ["error", 4],
                 
