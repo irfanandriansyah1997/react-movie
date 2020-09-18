@@ -40,90 +40,92 @@ const MovieDetailViews: FunctionComponent<MovieDetailInterface> = ({
             </div>
             <img src={poster} alt={title} />
             <table>
-                <tr>
-                    <td>Title</td>
-                    <td>{title}</td>
-                </tr>
-                <tr>
-                    <td>Genre</td>
-                    <td>{genre}</td>
-                </tr>
-                <tr>
-                    <td>IMDB ID</td>
-                    <td>{id}</td>
-                </tr>
-                <tr>
-                    <td>Figure</td>
-                    <td>
-                        <ul className={style.actors}>
-                            <li>
-                                <div>
-                                    Actors
-                                </div>
-                                <div>
-                                    {figure.actors}
-                                </div>
-                            </li>
-                            <li>
-                                <div>
-                                    Directors
-                                </div>
-                                <div>
-                                    {figure.director}
-                                </div>
-                            </li>
-                            <li>
-                                <div>
-                                    Writters
-                                </div>
-                                <div>
-                                    {figure.writter}
-                                </div>
-                            </li>
-                        </ul>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Plot</td>
-                    <td>{plot}</td>
-                </tr>
-                <tr>
-                    <td>Production</td>
-                    <td>{production}</td>
-                </tr>
-                <tr>
-                    <td>Released</td>
-                    <td>{released}</td>
-                </tr>
-                <tr>
-                    <td>Runtime</td>
-                    <td>{runtime}</td>
-                </tr>
-                <tr>
-                    <td>Type</td>
-                    <td>{type}</td>
-                </tr>
-                <tr>
-                    <td>Rated</td>
-                    <td>{rated}</td>
-                </tr>
-                <tr>
-                    <td>Rating</td>
-                    <td>
-                        <ul>
-                            {ratings.item.map((item) => (
-                                <li key={item.source}>
+                <tbody>
+                    <tr>
+                        <td>Title</td>
+                        <td>{title}</td>
+                    </tr>
+                    <tr>
+                        <td>Genre</td>
+                        <td>{genre}</td>
+                    </tr>
+                    <tr>
+                        <td>IMDB ID</td>
+                        <td>{id}</td>
+                    </tr>
+                    <tr>
+                        <td>Figure</td>
+                        <td>
+                            <ul className={style.actors}>
+                                <li>
                                     <div>
-                                        {item.source}
+                                        Actors
                                     </div>
                                     <div>
-                                        {item.value}
+                                        {figure.actors}
                                     </div>
                                 </li>
-                            ))}
-                        </ul>
-                    </td>
-                </tr>
+                                <li>
+                                    <div>
+                                        Directors
+                                    </div>
+                                    <div>
+                                        {figure.director}
+                                    </div>
+                                </li>
+                                <li>
+                                    <div>
+                                        Writters
+                                    </div>
+                                    <div>
+                                        {figure.writter}
+                                    </div>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Plot</td>
+                        <td>{plot}</td>
+                    </tr>
+                    <tr>
+                        <td>Production</td>
+                        <td>{production}</td>
+                    </tr>
+                    <tr>
+                        <td>Released</td>
+                        <td>{released}</td>
+                    </tr>
+                    <tr>
+                        <td>Runtime</td>
+                        <td>{runtime}</td>
+                    </tr>
+                    <tr>
+                        <td>Type</td>
+                        <td>{type}</td>
+                    </tr>
+                    <tr>
+                        <td>Rated</td>
+                        <td>{rated}</td>
+                    </tr>
+                    <tr>
+                        <td>Rating</td>
+                        <td>
+                            <ul>
+                                {ratings.item.map((item) => (
+                                    <li key={item.source}>
+                                        <div>
+                                            {item.source}
+                                        </div>
+                                        <div>
+                                            {item.value}
+                                        </div>
+                                    </li>
+                                ))}
+                            </ul>
+                        </td>
+                    </tr>
+                </tbody>
             </table>
         </div>
     );

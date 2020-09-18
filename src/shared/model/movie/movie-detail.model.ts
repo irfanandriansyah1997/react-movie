@@ -14,27 +14,27 @@ import { MovieDetailInterface } from './interface/model.interface';
 class MovieDetailModel extends ModelAbstract<
     MovieDetailInterface
 > {
-    private title: string = '';
+    private title: string = 'N/A';
 
-    private year: string = '';
+    private year: string = 'N/A';
 
-    private id: string = '';
+    private id: string = 'N/A';
 
     private type: MovieType = 'movie';
 
-    private plot: string = '';
+    private plot: string = 'N/A';
 
-    private rated: string = '';
+    private rated: string = 'N/A';
 
-    private genre: string = '';
+    private genre: string = 'N/A';
 
-    private poster: string = '';
+    private poster: string = 'N/A';
 
-    private runtime: string = '';
+    private runtime: string = 'N/A';
 
-    private released: string = '';
+    private released: string = 'N/A';
 
-    private production: string = '';
+    private production: string = 'N/A';
 
     private score: ScoreModel = new ScoreModel();
 
@@ -48,7 +48,10 @@ class MovieDetailModel extends ModelAbstract<
      * @returns {this}
      */
     public setTitle(title: string): this {
-        this.title = title;
+        if (title) {
+            this.title = title;
+        }
+
         return this;
     }
 
@@ -58,7 +61,10 @@ class MovieDetailModel extends ModelAbstract<
      * @returns {this}
      */
     public setYear(year: string): this {
-        this.year = year;
+        if (year) {
+            this.year = year;
+        }
+
         return this;
     }
 
@@ -68,7 +74,10 @@ class MovieDetailModel extends ModelAbstract<
      * @returns {this}
      */
     public setId(id: string): this {
-        this.id = id;
+        if (id) {
+            this.id = id;
+        }
+
         return this;
     }
 
@@ -78,7 +87,10 @@ class MovieDetailModel extends ModelAbstract<
      * @returns {this}
      */
     public setType(type: MovieType): this {
-        this.type = type;
+        if (type) {
+            this.type = type;
+        }
+
         return this;
     }
 
@@ -88,7 +100,10 @@ class MovieDetailModel extends ModelAbstract<
      * @return {this}
      */
     public setPlot(plot: string): this {
-        this.plot = plot;
+        if (plot) {
+            this.plot = plot;
+        }
+
         return this;
     }
 
@@ -98,7 +113,10 @@ class MovieDetailModel extends ModelAbstract<
      * @return {this}
      */
     public setRated(rated: string): this {
-        this.rated = rated;
+        if (rated) {
+            this.rated = rated;
+        }
+
         return this;
     }
 
@@ -108,7 +126,10 @@ class MovieDetailModel extends ModelAbstract<
      * @return {this}
      */
     public setGenre(genre: string): this {
-        this.genre = genre;
+        if (genre) {
+            this.genre = genre;
+        }
+
         return this;
     }
 
@@ -118,7 +139,10 @@ class MovieDetailModel extends ModelAbstract<
      * @return {this}
      */
     public setPoster(poster: string): this {
-        this.poster = poster;
+        if (poster) {
+            this.poster = poster;
+        }
+
         return this;
     }
 
@@ -128,7 +152,10 @@ class MovieDetailModel extends ModelAbstract<
      * @return {this}
      */
     public setRuntime(runtime: string): this {
-        this.runtime = runtime;
+        if (runtime) {
+            this.runtime = runtime;
+        }
+
         return this;
     }
 
@@ -138,7 +165,10 @@ class MovieDetailModel extends ModelAbstract<
      * @return {this}
      */
     public setReleased(released: string): this {
-        this.released = released;
+        if (released) {
+            this.released = released;
+        }
+
         return this;
     }
 
@@ -148,7 +178,10 @@ class MovieDetailModel extends ModelAbstract<
      * @return {this}
      */
     public setProduction(production: string): this {
-        this.production = production;
+        if (production) {
+            this.production = production;
+        }
+
         return this;
     }
 
@@ -158,7 +191,10 @@ class MovieDetailModel extends ModelAbstract<
      * @return {this}
      */
     public setScore(score: ScoreModel): this {
-        this.score = score;
+        if (score) {
+            this.score = score;
+        }
+
         return this;
     }
 
@@ -168,7 +204,10 @@ class MovieDetailModel extends ModelAbstract<
      * @return {this}
      */
     public setRatings(ratings: RatingModel): this {
-        this.ratings = ratings;
+        if (ratings) {
+            this.ratings = ratings;
+        }
+
         return this;
     }
 
@@ -178,7 +217,10 @@ class MovieDetailModel extends ModelAbstract<
      * @return {this}
      */
     public setFigure(figure: MovieFigureModel): this {
-        this.figure = figure;
+        if (figure) {
+            this.figure = figure;
+        }
+
         return this;
     }
 
