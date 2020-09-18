@@ -67,7 +67,13 @@ class MovieListItemModel extends ModelAbstract<
      * @returns {this}
      */
     public setPoster(poster: string): this {
-        this.poster = poster;
+        if (poster === 'N/A') {
+            this.poster =
+                'https://i.ibb.co/YZs7dm8/QPi5-Ux-X8-400x400.png';
+        } else {
+            this.poster = poster;
+        }
+
         return this;
     }
 

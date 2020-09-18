@@ -109,7 +109,8 @@
       "class-methods-use-this": ["off"],
       "no-multiple-empty-lines": "error",
       "lines-between-class-members": ["error", "always"],
-      "padded-blocks": ["error", "never"]
+      "padded-blocks": ["error", "never"],
+      "react-hooks/exhaustive-deps": "off"
     },
     "overrides": [
         {
