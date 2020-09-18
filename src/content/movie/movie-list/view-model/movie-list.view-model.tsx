@@ -21,6 +21,7 @@ import {
     unsetPaginationAction
 } from '../../../../shared/reducers/pagination/action/pagination.action';
 import DialogComponent from '../../../../shared/component/molecules/dialog-movies-card/dialog.component';
+import { unsetMovieDetailAction } from '../../../../shared/reducers/movie-detail/action/movie-detail.action';
 
 /**
  * Movie List View Model
@@ -129,6 +130,7 @@ const MovieListViewModel: FunctionComponent<{}> = () =>  {
 
     useEffect(() => {
         dispatch(setPageAction(1));
+        dispatch(unsetMovieDetailAction());
     // eslint-disable-next-line
     }, []);
 

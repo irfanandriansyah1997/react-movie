@@ -2,6 +2,7 @@ import { MovieRepositoryInterface as Repo } from '../../../movie.repository';
 import APIListRequestModel from '../../../../model/api/api-list-request.model';
 import APIClientBuilder from '../../../../modules/api/builder/api-client.builder';
 import APIDetailRequestModel from '../../../../model/api/api-detail-request.model';
+import { ErrorInterface } from '../../../../model/error/interface/model.interface';
 import { RootObjectListAPIResponse } from '../../../../generated/api/list-api.interface';
 import { RootObjectAPIErrorResponse } from '../../../../generated/api/error-api.interface';
 import { RootObjectDetailAPIResponse } from '../../../../generated/api/detail-api.interface';
@@ -19,6 +20,7 @@ import {
     API_KEY,
     API_URI
 } from '../../../../../env/env.config';
+
 /**
  * Generate Class
  * @author Irfan Andriansyah <irfan@99.co>
@@ -80,14 +82,16 @@ class MovieRepositoryImplementation implements Repo {
      */
     getDetailMovie(
         param: APIDetailRequestModel
-    ): Promise<MovieDetailInterface | undefined> {
+    ): Promise<
+        MovieDetailInterface | ErrorInterface | undefined
+    > {
         const { apiKey, apiURI } = this;
 
         return new APIClientBuilder<
             | RootObjectDetailAPIResponse
             | RootObjectAPIErrorResponse,
             APIDetailRequestInterface,
-            MovieDetailInterface
+            MovieDetailInterface | ErrorInterface
         >()
             .setApiKey(apiKey)
             .setApiURI(apiURI)

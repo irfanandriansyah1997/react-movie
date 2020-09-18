@@ -5,6 +5,7 @@ import ScoreTranslatorHelper from '../../general/helper/score-translator.helper'
 import RatingTranslatorHelper from '../../general/helper/rating-translator.helper';
 import { RootObjectDetailAPIResponse } from '../../../generated/api/detail-api.interface';
 import { RootObjectAPIErrorResponse } from '../../../generated/api/error-api.interface';
+import ErrorModel from '../../error/error.model';
 
 /**
  * Movie Detail Translator
@@ -16,12 +17,12 @@ class MovieDetailTranslatorHelper {
      * Translate Rest To Movie Detail
      * @param {Object} response - Response API
      */
-    public static translateRESTToMovieDetail({
-        Response,
-        ...res
-    }:
-        | RootObjectAPIErrorResponse
-        | RootObjectDetailAPIResponse): MovieDetailModel {
+    public static translateRESTToMovieDetail(
+        response:
+            | RootObjectAPIErrorResponse
+            | RootObjectDetailAPIResponse
+    ): MovieDetailModel | ErrorModel {
+        const { Response, ...res } = response;
         if (Response === 'True') {
             const {
                 Title,
@@ -84,7 +85,9 @@ class MovieDetailTranslatorHelper {
                 );
         }
 
-        throw new Error('API Error');
+        return new ErrorModel()
+            .setError(true)
+            .setMessage('Data Not Found');
     }
 }
 

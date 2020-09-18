@@ -1,5 +1,6 @@
 import APIListRequestModel from '../model/api/api-list-request.model';
 import APIDetailRequestModel from '../model/api/api-detail-request.model';
+import { ErrorInterface } from '../model/error/interface/model.interface';
 
 import {
     MovieListInterface,
@@ -17,5 +18,7 @@ export interface MovieRepositoryInterface {
     ): Promise<MovieListInterface | undefined>;
     getDetailMovie(
         param: APIDetailRequestModel
-    ): Promise<MovieDetailInterface | undefined>;
+    ): Promise<
+        MovieDetailInterface | ErrorInterface | undefined
+    >;
 }
