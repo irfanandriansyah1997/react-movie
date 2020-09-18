@@ -6,10 +6,8 @@ import MovieListViewModel from './view-model/movie-list.view-model';
  * @author Irfan Andriansyah <irfan@99.co>
  * @since 2020.09.17
  */
-const MovieListPage: FunctionComponent = () => {
-    return (
-        <MovieListViewModel />
-    );
-};
+const MovieListPage: FunctionComponent = () => (
+    <MovieListViewModel />
+);
 
 export default MovieListPage;
