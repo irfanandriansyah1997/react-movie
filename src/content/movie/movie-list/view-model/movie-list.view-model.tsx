@@ -20,6 +20,7 @@ import {
     setPaginationAction,
     unsetPaginationAction
 } from '../../../../shared/reducers/pagination/action/pagination.action';
+import DialogComponent from '../../../../shared/component/molecules/dialog-movies-card/dialog.component';
 
 /**
  * Movie List View Model
@@ -29,7 +30,7 @@ import {
 const MovieListViewModel: FunctionComponent<{}> = () =>  {
     const dispatch = useDispatch();
     const [query, setQuery] = useState<string>('Batman');
-    // const [showDialog, setShowDialog] = useState<boolean>(false);
+    const [showDialog, setShowDialog] = useState<boolean>(false);
     const [activeMovie, setActiveMovie] = useState<MovieListItemInterface>(({
         id: '',
         poster: '',
@@ -98,6 +99,7 @@ const MovieListViewModel: FunctionComponent<{}> = () =>  {
 
     /**
      * On Change Query
+     * @param {string} text - text param
      * @returns {void}
      */
     const onChangeQuery = (text: string): void => {
@@ -107,12 +109,22 @@ const MovieListViewModel: FunctionComponent<{}> = () =>  {
         dispatch(setPageAction(1));
     };
 
+    /**
+     * On Click Card
+     * @param {MovieListItemInterface} item - movie item
+     * @returns {void}
+     */
+    const onClickCard = (item: MovieListItemInterface): void => {
+        setActiveMovie(item);
+        setShowDialog(true);
+    };
+
     const contextValue: MovieListContextInterface = {
         query,
         activeMovie,
-        setActiveMovie,
         onFetchAPI: isFetchAPI,
         setQuery: onChangeQuery,
+        setActiveMovie: onClickCard
     };
 
     useEffect(() => {
@@ -128,6 +140,13 @@ const MovieListViewModel: FunctionComponent<{}> = () =>  {
             <MovieListViews
                 item={movieList}
                 totalResult={totalResult}
+            />
+            <DialogComponent
+                onCloseDialog={():void => {
+                    setShowDialog(false);
+                }}
+                poster={activeMovie.poster}
+                show={showDialog}
             />
         </MovieListContext.Provider>
     );

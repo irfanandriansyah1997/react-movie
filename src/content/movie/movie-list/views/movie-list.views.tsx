@@ -10,13 +10,13 @@ import MovieListContext from '../context/movie-list.context';
 import { ViewsPropsInterface } from './interfaces/views.interface';
 import { MovieType } from '../../../../shared/interface/movie-type.interface';
 import { MovieListContextInterface } from '../context/interfaces/context.interface';
+import TextComponent from '../../../../shared/component/atomic/text/text.component';
 import { useInfiniteScroll } from '../../../../shared/helper/intersection-observer.helper';
+import HeaderComponent from '../../../../shared/component/molecules/header/header.component';
 import { MovieListItemInterface } from '../../../../shared/model/movie/interface/model.interface';
 import MoviesCardComponent from '../../../../shared/component/molecules/movies-card/movies-card.component';
 
 import style from './style/style.module.css';
-import HeaderComponent from '../../../../shared/component/molecules/header/header.component';
-import TextComponent from '../../../../shared/component/atomic/text/text.component';
 
 /**
  * Movie List Views
