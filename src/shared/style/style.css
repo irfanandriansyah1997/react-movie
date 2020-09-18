@@ -3,6 +3,22 @@
    License: none (public domain)
 */
 
+body {
+    background: #ece9e6; /* fallback for old browsers */
+    background: -webkit-linear-gradient(
+        to bottom,
+        #ffffff,
+        #f5f3f1
+    ); /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(
+        to bottom,
+        #ffffff,
+        #ece9e6
+    ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
 *,
 *:before,
 *:after {

@@ -22,7 +22,7 @@ import { setPageAction, setPaginationAction } from '../../../../shared/reducers/
 const MovieListViewModel: FunctionComponent<{}> = () =>  {
     const dispatch = useDispatch();
     const [query, setQuery] = useState<string>('Batman');
-    const [showDialog, setShowDialog] = useState<boolean>(false);
+    // const [showDialog, setShowDialog] = useState<boolean>(false);
     const [activeMovie, setActiveMovie] = useState<MovieListItemInterface>(({
         id: '',
         poster: '',
@@ -31,18 +31,30 @@ const MovieListViewModel: FunctionComponent<{}> = () =>  {
         year: ''
     }));
 
-    const page = useSelector(({ pagination: state }: TypeValueReducers) => {
-        return state.pagination.page;
+    const { totalPage, page } = useSelector(({ pagination: state }: TypeValueReducers) => {
+        const {
+            page: valPage,
+            totalPage: valTotal
+        } = state.pagination;
+
+        return {
+            page: valPage,
+            totalPage: valTotal
+        };
     });
+    
     const movieList = useSelector(({ list: state }: TypeValueReducers) => {
         return state.item;
     });
 
-    const contextValue: MovieListContextInterface = {
-        activeMovie,
-        query,
-        setActiveMovie,
-        setQuery
+    /**
+     * Is Fetch API
+     * @return {void}
+     */
+    const isFetchAPI = (): void => {
+        if (page + 1 <= totalPage) {
+            dispatch(setPageAction(page + 1));
+        }
     };
 
     /**
@@ -57,6 +69,14 @@ const MovieListViewModel: FunctionComponent<{}> = () =>  {
                 dispatch(setPaginationAction(pagination));
             }
         });
+    };
+
+    const contextValue: MovieListContextInterface = {
+        query,
+        setQuery,
+        activeMovie,
+        setActiveMovie,
+        onFetchAPI: isFetchAPI
     };
 
     useEffect(() => {

@@ -1,11 +1,17 @@
 import PropTypes from 'prop-types';
-import React, { FunctionComponent, useContext, Validator } from 'react';
+import React, {
+    Validator,
+    useEffect,
+    useContext,
+    FunctionComponent
+} from 'react';
 
 import MovieListContext from '../context/movie-list.context';
 import { ViewsPropsInterface } from './interfaces/views.interface';
 import { MovieType } from '../../../../shared/interface/movie-type.interface';
 import { MovieListContextInterface } from '../context/interfaces/context.interface';
 import { MovieListItemInterface } from '../../../../shared/model/movie/interface/model.interface';
+import { useInfiniteScroll } from '../../../../shared/helper/intersection-observer.helper';
 import MoviesCardComponent from '../../../../shared/component/molecules/movies-card/movies-card.component';
 
 import style from './style/style.module.css';
@@ -19,7 +25,18 @@ import style from './style/style.module.css';
 const MovieListViews: FunctionComponent<ViewsPropsInterface> = ({
     item: movieList
 }) => {
-    const { setActiveMovie } = useContext<MovieListContextInterface>(MovieListContext);
+    const [isFetching, setIsFetching] = useInfiniteScroll();
+    const { setActiveMovie, onFetchAPI } = useContext<
+        MovieListContextInterface
+    >(MovieListContext);
+
+    useEffect(() => {
+        if (isFetching) {
+            onFetchAPI();
+            setIsFetching(false);
+        }
+    }, [isFetching]);
+
     return (
         <div className={style.list}>
             {movieList.map((item) => (

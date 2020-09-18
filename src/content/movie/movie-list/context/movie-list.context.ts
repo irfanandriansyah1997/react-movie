@@ -12,6 +12,7 @@ const MovieListContext = createContext<
         year: ''
     },
     query: '',
+    onFetchAPI: () => {},
     setQuery: () => {},
     setActiveMovie: () => {}
 });

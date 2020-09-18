@@ -1,5 +1,4 @@
 import {
-    useRef,
     useState,
     useEffect,
     SetStateAction,
@@ -11,41 +10,35 @@ import {
  * @author Irfan Andriansyah <irfan@99.co>
  * @since 2020.09.17
  */
-export const IntersectionObserverHelper = ({
-    root = null,
-    rootMargin,
-    threshold = 0
-}: IntersectionObserverInit): [
-    Dispatch<SetStateAction<HTMLDivElement | null>>,
-    boolean
+export const useInfiniteScroll = (): [
+    boolean,
+    Dispatch<SetStateAction<boolean>>
 ] => {
-    const [intersect, setIntersect] = useState<boolean>(
-        false
-    );
-    const [node, setNode] = useState<HTMLDivElement | null>(
-        null
-    );
-    const observer = useRef(
-        new window.IntersectionObserver(
-            ([entry]) => {
-                setIntersect(entry.isIntersecting);
-            },
-            {
-                root,
-                rootMargin,
-                threshold
-            }
-        )
-    );
+    const [isFetching, setIsFetching] = useState(false);
 
     useEffect(() => {
-        const { current: currentObserver } = observer;
-        currentObserver.disconnect();
+        window.addEventListener('scroll', handleScroll);
+        return (): void =>
+            window.removeEventListener(
+                'scroll',
+                handleScroll
+            );
+    }, []);
 
-        if (node) currentObserver.observe(node);
+    /**
+     * Handle Scroll
+     * @return {void}
+     */
+    const handleScroll = (): void => {
+        if (
+            window.innerHeight +
+                document.documentElement.scrollTop !==
+                document.documentElement.offsetHeight ||
+            isFetching
+        )
+            return;
+        setIsFetching(true);
+    };
 
-        return (): void => currentObserver.disconnect();
-    }, [node]);
-
-    return [setNode, intersect];
+    return [isFetching, setIsFetching];
 };

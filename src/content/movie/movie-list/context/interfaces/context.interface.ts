@@ -8,6 +8,7 @@ import { MovieListItemInterface } from '../../../../../shared/model/movie/interf
 export interface MovieListContextInterface {
     query: string;
     activeMovie: MovieListItemInterface;
+    onFetchAPI(): void;
     setQuery(query: string): void;
     setActiveMovie(movie: MovieListItemInterface): void;
 }
